@@ -19,7 +19,22 @@
       </div>
     </nav>
 
-    <main class="container">
+    <!-- Number 4-Multiple Views -->
+     <!-- <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Single Page App</a>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><a class="active" href="#todo">To Do</a></li>
+          <li class="tab"><a href="#search">Image Search</a></li>
+        </ul>
+      </div>
+     </nav>
+     <section id="todo" class="col s12">Test 1</section>
+     <section id="search" class="col s12">Test 2</section> -->
+
+     <main class="container">
        <form  class="card col s12" id="loginForm" style="padding:1em">
 
           <div class="row">
@@ -43,5 +58,25 @@
 
     <script src="util.js"></script>
     <script src="login.js"></script>
+
+    <!-- Task 4.1 -->
+    <section id="todo" class="col s12 container">
+
+  <div class="card" >
+    <div class="card-content">
+      <span class="card-title">Create Todo</span>
+      <form name="addForm">
+        <div class="input-field">
+          <input type="text" name="addText" placeholder="enter to-do" class="materialize-textarea"></textarea>
+          <label for="addText">Enter todo Text</label>
+        </div>
+        <input class="btn white-text" type="submit" value="SAVE" />
+      </form>
+    </div>
+  </div>
+
+  <ul class="collection with-header" id="result"></ul>
+
+</section>
   </body>
 </html>

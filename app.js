@@ -80,8 +80,12 @@ async function toggleDone(event) {
   let checkbox = event.target;
   let id = checkbox.dataset['id'];//get id from data attribute
 
-  let result = await sendRequest(`${server}/todos/${id}/done`, 'PUT');
+  let done = checkbox.checked;//returns true if the checkbox is checked
+  let result = await sendRequest(`${server}/todo/${id}`, 'PUT', {
+    'done': done
+  });
 
+  let message = done ? 'Done!' : 'Not Done!';
   toast(result.message);
 }
 
@@ -97,3 +101,57 @@ function logout() {
   window.localStorage.removeItem('access_token');
   window.location.href = "index.html";
 }
+
+
+
+// Task 5.1  - function displayTodos (data) is at top
+
+
+// async function displayTodos(data){
+
+//   let result = document.querySelector('#result');//access the DOM
+
+//   result.innerHTML = '';//clear result area
+  
+//   let html = '';//make an empty html string 
+
+//   if("error" in data){//user not logged in 
+//     html+= `
+//       <li class="card collection-item col s12 m4">
+//                 <div class="card-content">
+//                   <span class="card-title">
+//                     Error : Not Logged In
+//                   </span>
+//                 </div>
+//         </li>
+//     `;
+//   }else{
+//     for(let todo of data){
+//       html+= `
+//         <li class="card collection-item col s12 m4">
+//                   <div class="card-content">
+//                     <span class="card-title">${todo.text}
+//                       <label class="right">
+//                         <input type="checkbox" data-id="${todo.id}" onclick="toggleDone(event)" ${todo.done ? 'checked': ''} />
+//                         <span>Done</span>
+//                       </label>
+//                     </span>
+//                   </div>
+//                   <div class="card-action">
+//                     <a href="#" onclick="deleteTodo('${todo.id}')">DELETE</a>
+//                   </div>
+//           </li>
+//       `;//create html for each todo data by interpolating the values in the todo
+//     }
+//   }
+  
+//   //add the dynamic html to the DOM
+//   result.innerHTML = html;
+// }
+
+// async function loadView(){
+//   let todos = await sendRequest(`${server}/todo`, 'GET');
+//   displayTodos(todos);
+// }
+
+// loadView();
